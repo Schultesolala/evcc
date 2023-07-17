@@ -167,9 +167,7 @@ func (v *Identity) Login(oc *oauth2.Config, user, password string) (oauth2.Token
 	return ts, err
 }
 
-func (v *Identity) refresh(initial *oauth2.Token, ts oauth2.TokenSource) {
-	token := initial
-
+func (v *Identity) refresh(token *oauth2.Token, ts oauth2.TokenSource) {
 	for range time.Tick(5 * time.Minute) {
 		t, err := ts.Token()
 		if err != nil {
